@@ -1,0 +1,122 @@
+[
+  {
+    "model": "llama3.2:3b",
+    "prompt": "What is machine learning? Explain in 3 sentences.",
+    "timestamp": "2026-03-09T21:25:09.574513",
+    "runs": [
+      {
+        "run": 1,
+        "time_to_first_token": 3.955,
+        "total_latency": 13.692,
+        "tokens_per_second": 6.21,
+        "token_count": 85,
+        "ram_used_mb": 0.57,
+        "response_preview": "Machine learning is a subset of artificial intelligence that enables computers to automatically impr"
+      },
+      {
+        "run": 2,
+        "time_to_first_token": 0.529,
+        "total_latency": 12.213,
+        "tokens_per_second": 7.29,
+        "token_count": 89,
+        "ram_used_mb": 0.02,
+        "response_preview": "Machine learning (ML) is a subset of artificial intelligence (AI) that enables computers to learn fr"
+      },
+      {
+        "run": 3,
+        "time_to_first_token": 0.496,
+        "total_latency": 10.378,
+        "tokens_per_second": 7.8,
+        "token_count": 81,
+        "ram_used_mb": 0.01,
+        "response_preview": "Machine learning (ML) is a subset of artificial intelligence that enables computers to learn from da"
+      }
+    ],
+    "average": {
+      "time_to_first_token": 1.66,
+      "total_latency": 12.094,
+      "tokens_per_second": 7.1,
+      "ram_used_mb": 0.2
+    }
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "Write a Python function to reverse a string.",
+    "timestamp": "2026-03-09T21:25:33.699057",
+    "runs": [
+      {
+        "run": 1,
+        "time_to_first_token": 1.098,
+        "total_latency": 6.55,
+        "tokens_per_second": 5.65,
+        "token_count": 37,
+        "ram_used_mb": 0.02,
+        "response_preview": "def reverse_string(s):\n    \"\"\"\n    Reverses the input string.\n\n    Args:\n        s (str): The input "
+      },
+      {
+        "run": 2,
+        "time_to_first_token": 0.473,
+        "total_latency": 6.647,
+        "tokens_per_second": 6.02,
+        "token_count": 40,
+        "ram_used_mb": 0.01,
+        "response_preview": "def reverse_string(s):\n    \"\"\"\n    Reverses the input string.\n\n    Args:\n        s (str): The input "
+      },
+      {
+        "run": 3,
+        "time_to_first_token": 0.47,
+        "total_latency": 10.926,
+        "tokens_per_second": 7.6,
+        "token_count": 83,
+        "ram_used_mb": -0.04,
+        "response_preview": "def reverse_string(s):\n    \"\"\"\n    Reverses the input string.\n\n    Args:\n        s (str): The input "
+      }
+    ],
+    "average": {
+      "time_to_first_token": 0.68,
+      "total_latency": 8.041,
+      "tokens_per_second": 6.42,
+      "ram_used_mb": -0.0
+    }
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "What are the symptoms of diabetes?",
+    "timestamp": "2026-03-09T21:28:26.524790",
+    "runs": [
+      {
+        "run": 1,
+        "time_to_first_token": 0.9,
+        "total_latency": 59.946,
+        "tokens_per_second": 8.27,
+        "token_count": 496,
+        "ram_used_mb": 0.0,
+        "response_preview": "The symptoms of diabetes can vary from person to person, but common signs and symptoms include:\n\n1. "
+      },
+      {
+        "run": 2,
+        "time_to_first_token": 0.492,
+        "total_latency": 55.657,
+        "tokens_per_second": 8.18,
+        "token_count": 455,
+        "ram_used_mb": -0.0,
+        "response_preview": "The symptoms of diabetes can vary from person to person and may not always be noticeable in the earl"
+      },
+      {
+        "run": 3,
+        "time_to_first_token": 0.476,
+        "total_latency": 57.221,
+        "tokens_per_second": 8.46,
+        "token_count": 484,
+        "ram_used_mb": 0.02,
+        "response_preview": "The symptoms of diabetes can vary depending on the severity and type of the condition. Here are some"
+      }
+    ],
+    "average": {
+      "time_to_first_token": 0.623,
+      "total_latency": 57.608,
+      "tokens_per_second": 8.3,
+      "ram_used_mb": 0.01
+    }
+  }
+]

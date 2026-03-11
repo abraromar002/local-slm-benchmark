@@ -1,0 +1,337 @@
+{
+  "llama3.2:3b": [
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "condition": {
+            "title": "Diabetes",
+            "type": "string"
+          },
+          "symptoms": {
+            "items": [
+              "Increased thirst and hunger",
+              "Frequent urination",
+              "Fatigue",
+              "Blurred vision",
+              "Slow healing of cuts and wounds"
+            ],
+            "title": "Symptoms",
+            "type": "array"
+          },
+          "treatments": {
+            "items": [
+              "Dietary changes",
+              "Exercise",
+              "Medications (e.g. metformin, sulfonylureas)",
+              "Insulin therapy",
+              "Lifestyle modifications (e.g. weight loss, stress management)"
+            ],
+            "title": "Treatments",
+            "type": "array"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "string"
+          },
+          "seek_doctor": {
+            "title": "Seek Doctor",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "condition",
+          "symptoms",
+          "treatments",
+          "severity",
+          "seek_doctor"
+        ],
+        "title": "MedicalInfo",
+        "type": "object"
+      },
+      "latency": 41.709,
+      "attempts": 1,
+      "test_name": "Medical Info"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "function_name": {
+            "title": "Function Name",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          }
+        },
+        "required": [
+          "language",
+          "function_name",
+          "code",
+          "explanation"
+        ],
+        "title": "CodeSolution",
+        "type": "object",
+        "example": {
+          "language": "Python",
+          "function_name": "reverse_string",
+          "code": "def reverse_string(s):\n    return s[::-1]",
+          "explanation": "This function uses Python's slice notation to create a new string that is the reverse of the input string."
+        }
+      },
+      "latency": 25.199,
+      "attempts": 1,
+      "test_name": "Code Solution"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "question": {
+            "title": "Question",
+            "type": "string"
+          },
+          "answer": {
+            "title": "Answer",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "string"
+          },
+          "source_type": {
+            "title": "Source Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "answer",
+          "confidence",
+          "source_type"
+        ],
+        "title": "FactAnswer",
+        "type": "object",
+        "answer": {
+          "value": "Paris",
+          "confidence": "High",
+          "source_type": "Wikipedia"
+        }
+      },
+      "latency": 21.736,
+      "attempts": 1,
+      "test_name": "Fact Answer"
+    }
+  ],
+  "phi4-mini": [
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "condition": "Diabetes Mellitus",
+          "symptoms": [
+            "Frequent urination",
+            "Increased thirst and hunger",
+            "Unexplained weight loss or gain",
+            "Fatigue"
+          ],
+          "treatments": [
+            "Insulin therapy",
+            "Oral medications like metformin, sulfonylureas, DPP-4 inhibitors",
+            "Lifestyle changes including diet modification and exercise"
+          ],
+          "severity": "Varies from mild to severe; uncontrolled diabetes can lead to serious complications such as heart disease, kidney failure, blindness, etc.",
+          "seek_doctor": true
+        },
+        "required": [
+          "condition",
+          "symptoms",
+          "treatments",
+          "severity",
+          "seek_doctor"
+        ],
+        "title": "MedicalInfo",
+        "type": "object"
+      },
+      "latency": 35.043,
+      "attempts": 1,
+      "test_name": "Medical Info"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "language": "Python",
+          "function_name": "reverse_string",
+          "code": "def reverse_string(s):\n    return s[::-1]",
+          "explanation": "The 'reverse_string' function takes an input string 's' and returns its reversed version using Python's slicing feature."
+        },
+        "required": [
+          "language",
+          "function_name",
+          "code",
+          "explanation"
+        ],
+        "title": "String Reversal Solution in Python",
+        "type": "object"
+      },
+      "latency": 16.453,
+      "attempts": 1,
+      "test_name": "Code Solution"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "question": "What is the capital of France?",
+          "answer": "Paris",
+          "confidence": "High",
+          "source_type": "KnowledgeBase"
+        },
+        "required": [
+          "question",
+          "answer",
+          "confidence",
+          "source_type"
+        ],
+        "title": "FactAnswer",
+        "type": "object"
+      },
+      "latency": 12.105,
+      "attempts": 1,
+      "test_name": "Fact Answer"
+    }
+  ],
+  "mistral:7b": [
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "condition": {
+            "title": "Diabetes Mellitus",
+            "type": "string"
+          },
+          "symptoms": {
+            "items": [
+              "Frequent urination",
+              "Excessive thirst",
+              "Increased hunger",
+              "Fatigue",
+              "Blurred vision",
+              "Numbness or tingling in the feet",
+              "Wounds that do not heal",
+              "Unusual weight loss"
+            ],
+            "title": "Symptoms",
+            "type": "array"
+          },
+          "treatments": {
+            "items": [
+              "Diet and exercise",
+              "Oral medications",
+              "Insulin therapy",
+              "Blood glucose monitoring",
+              "Regular check-ups with a healthcare provider"
+            ],
+            "title": "Treatments",
+            "type": "array"
+          },
+          "severity": {
+            "title": "High",
+            "type": "string"
+          },
+          "seek_doctor": {
+            "title": "True",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "condition",
+          "symptoms",
+          "treatments",
+          "severity",
+          "seek_doctor"
+        ],
+        "title": "MedicalInfo",
+        "type": "object"
+      },
+      "latency": 639.146,
+      "attempts": 1,
+      "test_name": "Medical Info"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "language": {
+            "const": "Python"
+          },
+          "function_name": {
+            "const": "reverse_string"
+          },
+          "code": {
+            "const": "def reverse_string(s):\n return s[::-1]"
+          },
+          "explanation": {
+            "const": "The function takes a string as input and returns the reversed version of it. The slicing notation [::-1] is used to reverse the string."
+          }
+        },
+        "required": [
+          "language",
+          "function_name",
+          "code",
+          "explanation"
+        ],
+        "title": "CodeSolution",
+        "type": "object"
+      },
+      "latency": 336.666,
+      "attempts": 1,
+      "test_name": "Code Solution"
+    },
+    {
+      "success": true,
+      "data": {
+        "properties": {
+          "question": {
+            "title": "What is the capital of France?",
+            "type": "string"
+          },
+          "answer": {
+            "title": "Paris",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "High",
+            "type": "string"
+          },
+          "source_type": {
+            "title": "Encyclopedia Britannica",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "answer",
+          "confidence",
+          "source_type"
+        ],
+        "title": "FactAnswer",
+        "type": "object"
+      },
+      "latency": 206.621,
+      "attempts": 1,
+      "test_name": "Fact Answer"
+    }
+  ]
+}
