@@ -9,7 +9,12 @@ All experiments run **locally with no cloud APIs or external services**.
 
 #  Benchmark Dashboard
 
-<img width="1200" alt="benchmark-dashboard" src=!>
+<img width="1175" height="870" alt="image" src="https://github.com/user-attachments/assets/1eb32a45-4cad-4c34-ab33-cd86432cb8ad" />
+
+
+<img width="1226" height="460" alt="image" src="https://github.com/user-attachments/assets/b6d8eb5e-b5dd-4d10-8734-f8063db0872c" />
+
+
 
 The dashboard visualizes benchmark results including:
 
