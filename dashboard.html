@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local SLM Benchmark Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .topbar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .topbar-title { font-size: 15px; font-weight: 600; color: #1a1a2e; }
+  .topbar-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .badge { font-size: 11px; background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+
+  .dash { padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; max-width: 1200px; margin: 0 auto; }
+
+  .section-label { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: -4px; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metrics-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .metric { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-weight: 500; }
+  .metric-val { font-size: 26px; font-weight: 700; line-height: 1; }
+  .metric-sub { font-size: 11px; color: #94a3b8; margin-top: 5px; }
+  .green { color: #059669; }
+  .blue  { color: #2563eb; }
+  .red   { color: #dc2626; }
+  .gray  { color: #374151; }
+  .purple { color: #7c3aed; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px 18px; }
+  .card-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 2px; }
+  .card-sub   { font-size: 11px; color: #94a3b8; margin-bottom: 14px; }
+
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; font-size: 12px; color: #64748b; }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  .chart-wrap { position: relative; width: 100%; height: 190px; }
+  .chart-wrap-lg { position: relative; width: 100%; height: 210px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { font-size: 11px; font-weight: 600; color: #64748b; text-align: left; padding: 0 0 10px 0; border-bottom: 1px solid #f1f5f9; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 9px 0; border-bottom: 1px solid #f8fafc; color: #1a1a2e; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+
+  .pill { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green  { background: #d1fae5; color: #065f46; }
+  .pill-blue   { background: #dbeafe; color: #1e40af; }
+  .pill-red    { background: #fee2e2; color: #991b1b; }
+
+  .findings { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .finding { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; display: flex; gap: 12px; }
+  .fi-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .fi-title { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+  .fi-desc  { font-size: 12px; color: #64748b; margin-top: 4px; line-height: 1.5; }
+
+  .bar-track { background: #f1f5f9; border-radius: 4px; height: 7px; flex: 1; overflow: hidden; }
+  .bar-fill  { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+  .bar-row   { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 12px; color: #64748b; width: 90px; flex-shrink: 0; }
+  .bar-val   { font-size: 12px; color: #374151; width: 36px; text-align: right; font-weight: 500; }
+
+  .sysenv { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .sysenv-item { padding: 12px 16px; border-right: 1px solid #f1f5f9; }
+  .sysenv-item:last-child { border-right: none; }
+  .sysenv-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; font-weight: 500; }
+  .sysenv-val { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+  .sysenv-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+  .ttft-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .ttft-card { background: #f8fafc; border-radius: 8px; padding: 10px 12px; }
+  .ttft-label { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+  .ttft-val { font-size: 18px; font-weight: 700; color: #1a1a2e; }
+  .ttft-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+  .divider { border: none; border-top: 1px solid #e2e8f0; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Local SLM Benchmark Dashboard</div>
+    <div class="topbar-sub">Llama 3.2 · Phi-4 Mini · Mistral 7B — Ollama · FastAPI · Pydantic</div>
+  </div>
+  <span class="badge">15 prompts / model</span>
+</div>
+
+<div class="dash">
+
+  <!-- System Environment -->
+  <div class="section-label">System environment</div>
+  <div class="card" style="padding: 0;">
+    <div class="sysenv">
+      <div class="sysenv-item">
+        <div class="sysenv-label">CPU</div>
+        <div class="sysenv-val">Intel i7-1185G7 @ 3.00GHz</div>
+        <div class="sysenv-sub">Tiger Lake · 11th Gen · 4 cores · 4.8GHz boost</div>
+      </div>
+      <div class="sysenv-item">
+        <div class="sysenv-label">RAM</div>
+        <div class="sysenv-val">31.7 GB usable</div>
+        <div class="sysenv-sub">Intel Iris Xe · zero swap during tests</div>
+      </div>
+      <div class="sysenv-item">
+        <div class="sysenv-label">OS</div>
+        <div class="sysenv-val">Windows 11 Pro</div>
+        <div class="sysenv-sub">Ollama local inference</div>
+      </div>
+      <div class="sysenv-item">
+        <div class="sysenv-label">Models tested</div>
+        <div class="sysenv-val">3 models</div>
+        <div class="sysenv-sub">llama3.2 · phi4-mini · mistral</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section-label">Performance overview</div>
+  <div class="metrics-5">
+    <div class="metric">
+      <div class="metric-label">Fastest model</div>
+      <div class="metric-val green">18.0s</div>
+      <div class="metric-sub">llama3.2:3b avg latency</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Most detailed</div>
+      <div class="metric-val blue">177.7</div>
+      <div class="metric-sub">phi4-mini avg words</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Slowest model</div>
+      <div class="metric-val red">97.8s</div>
+      <div class="metric-sub">mistral:7b avg latency</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Speed ratio</div>
+      <div class="metric-val gray">5.4×</div>
+      <div class="metric-sub">llama vs mistral</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Peak throughput</div>
+      <div class="metric-val purple">8.3</div>
+      <div class="metric-sub">llama3.2 tokens/sec</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section-label">Model comparison</div>
+  <div class="row2">
+    <div class="card">
+      <div class="card-title">Average latency per model</div>
+      <div class="card-sub">Seconds per response — lower is better</div>
+      <div class="legend">
+        <span><span class="dot" style="background:#059669"></span>llama3.2:3b</span>
+        <span><span class="dot" style="background:#2563eb"></span>phi4-mini</span>
+        <span><span class="dot" style="background:#dc2626"></span>mistral:7b</span>
+      </div>
+      <div class="chart-wrap"><canvas id="c1"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Average response length</div>
+      <div class="card-sub">Words per response</div>
+      <div class="legend">
+        <span><span class="dot" style="background:#059669"></span>llama3.2:3b</span>
+        <span><span class="dot" style="background:#2563eb"></span>phi4-mini</span>
+        <span><span class="dot" style="background:#dc2626"></span>mistral:7b</span>
+      </div>
+      <div class="chart-wrap"><canvas id="c2"></canvas></div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="card">
+      <div class="card-title">Latency by category</div>
+      <div class="card-sub">Logic · Coding · Creative — avg seconds</div>
+      <div class="legend">
+        <span><span class="dot" style="background:#059669"></span>llama3.2:3b</span>
+        <span><span class="dot" style="background:#2563eb"></span>phi4-mini</span>
+        <span><span class="dot" style="background:#dc2626"></span>mistral:7b</span>
+      </div>
+      <div class="chart-wrap-lg"><canvas id="c3"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">llama3.2:3b — detailed benchmark</div>
+      <div class="card-sub">3 runs · tokens/sec · time to first token</div>
+
+      <div class="legend" style="margin-bottom:12px">
+        <span><span class="dot" style="background:#7c3aed"></span>tokens/sec per run</span>
+      </div>
+      <div class="chart-wrap" style="height:130px"><canvas id="c4"></canvas></div>
+
+      <div class="ttft-grid">
+        <div class="ttft-card">
+          <div class="ttft-label">TTFT — cold start</div>
+          <div class="ttft-val">3.96s</div>
+          <div class="ttft-sub">First run (model loading)</div>
+        </div>
+        <div class="ttft-card">
+          <div class="ttft-label">TTFT — warm</div>
+          <div class="ttft-val green">0.50s</div>
+          <div class="ttft-sub">Subsequent runs (8× faster)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Table + Structured Output -->
+  <div class="row2">
+    <div class="card">
+      <div class="card-title">Model comparison summary</div>
+      <div class="card-sub">All 15 prompts · benchmark results</div>
+      <table>
+        <tr>
+          <th>Model</th>
+          <th>Avg latency</th>
+          <th>Avg words</th>
+          <th>Verdict</th>
+        </tr>
+        <tr>
+          <td>llama3.2:3b</td>
+          <td>18.0s</td>
+          <td>112.7</td>
+          <td><span class="pill pill-green">Fastest</span></td>
+        </tr>
+        <tr>
+          <td>phi4-mini</td>
+          <td>36.3s</td>
+          <td>177.7</td>
+          <td><span class="pill pill-blue">Most detailed</span></td>
+        </tr>
+        <tr>
+          <td>mistral:7b</td>
+          <td>97.8s</td>
+          <td>115.6</td>
+          <td><span class="pill pill-red">Slowest</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Structured output compliance</div>
+      <div class="card-sub">JSON schema adherence — Pydantic validation</div>
+      <div class="bar-row">
+        <span class="bar-label">llama3.2:3b</span>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#dc2626" id="b1"></div></div>
+        <span class="bar-val" style="color:#dc2626">FAIL</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">phi4-mini</span>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#059669" id="b2"></div></div>
+        <span class="bar-val" style="color:#059669">PASS</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">mistral:7b</span>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#dc2626" id="b3"></div></div>
+        <span class="bar-val" style="color:#dc2626">FAIL</span>
+      </div>
+
+      <hr class="divider" style="margin: 14px 0;">
+      <div class="card-title" style="margin-bottom:6px">Failure pattern</div>
+      <div style="font-size:12px;color:#64748b;line-height:1.6">
+        llama and mistral returned the <strong style="color:#1a1a2e">JSON schema structure</strong> itself instead of populated values — phi4-mini was the only model to correctly follow the instruction and return valid data.
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Findings -->
+  <div class="section-label">Key findings</div>
+  <div class="findings">
+    <div class="finding">
+      <div class="fi-icon" style="background:#d1fae5">⚡</div>
+      <div>
+        <div class="fi-title">llama3.2:3b is the speed champion</div>
+        <div class="fi-desc">18s avg latency — 5× faster than mistral:7b. Best choice when response time is critical.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="fi-icon" style="background:#dbeafe">🧠</div>
+      <div>
+        <div class="fi-title">phi4-mini wins on detail and JSON</div>
+        <div class="fi-desc">177 avg words and the only model to pass structured output — best for tasks needing thorough, structured responses.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="fi-icon" style="background:#ffedd5">📊</div>
+      <div>
+        <div class="fi-title">Bigger model ≠ better on CPU</div>
+        <div class="fi-desc">mistral:7b (4.4GB) is 5× slower than llama3.2 (2GB) with no quality gain — model size hurts on CPU-only inference.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="fi-icon" style="background:#ede9fe">🔥</div>
+      <div>
+        <div class="fi-title">Cold start penalty is real</div>
+        <div class="fi-desc">TTFT drops from 3.96s (cold) to 0.5s (warm) — an 8× improvement. Always warm up the model before benchmarking.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const colors = ['#059669','#2563eb','#dc2626'];
+const alpha  = ['#05966922','#2563eb22','#dc262622'];
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#64748b';
+const grid = { color: '#f1f5f9' };
+
+new Chart(document.getElementById('c1'), {
+  type: 'bar',
+  data: {
+    labels: ['llama3.2:3b','phi4-mini','mistral:7b'],
+    datasets: [{ data: [18.0,36.3,97.8], backgroundColor: alpha, borderColor: colors, borderWidth: 2, borderRadius: 6 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{grid, ticks:{callback:v=>v+'s'}}, x:{grid:{display:false}} } }
+});
+
+new Chart(document.getElementById('c2'), {
+  type: 'bar',
+  data: {
+    labels: ['llama3.2:3b','phi4-mini','mistral:7b'],
+    datasets: [{ data: [112.7,177.7,115.6], backgroundColor: alpha, borderColor: colors, borderWidth: 2, borderRadius: 6 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{grid}, x:{grid:{display:false}} } }
+});
+
+new Chart(document.getElementById('c3'), {
+  type: 'bar',
+  data: {
+    labels: ['Logic','Coding','Creative'],
+    datasets: [
+      { label:'llama3.2:3b', data:[14.2,17.8,22.1], backgroundColor:'#05966922', borderColor:'#059669', borderWidth:2, borderRadius:4 },
+      { label:'phi4-mini',   data:[29.5,62.4,16.8], backgroundColor:'#2563eb22', borderColor:'#2563eb', borderWidth:2, borderRadius:4 },
+      { label:'mistral:7b',  data:[69.7,184.3,39.3], backgroundColor:'#dc262622', borderColor:'#dc2626', borderWidth:2, borderRadius:4 }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{grid, ticks:{callback:v=>v+'s'}}, x:{grid:{display:false}} } }
+});
+
+new Chart(document.getElementById('c4'), {
+  type: 'line',
+  data: {
+    labels: ['Run 1','Run 2','Run 3'],
+    datasets: [{
+      label: 'tokens/sec',
+      data: [6.21, 7.29, 7.80],
+      borderColor: '#7c3aed',
+      backgroundColor: '#7c3aed22',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#7c3aed',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{grid, min:5, max:9, ticks:{callback:v=>v+' t/s'}}, x:{grid:{display:false}} } }
+});
+
+setTimeout(() => {
+  document.getElementById('b1').style.width = '18%';
+  document.getElementById('b2').style.width = '100%';
+  document.getElementById('b3').style.width = '18%';
+}, 300);
+</script>
+</body>
+</html>
