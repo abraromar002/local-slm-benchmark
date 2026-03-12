@@ -1,0 +1,347 @@
+[
+  {
+    "model": "llama3.2:3b",
+    "prompts": [
+      {
+        "category": "logic",
+        "prompt": "If I have 3 apples and you take away 2, how many apples do YOU have?",
+        "response": "That's a clever trick question. The question asks \"how many apples DO I have,\" which implies that the count is based on your initial amount of apples.\n\nHowever, if we consider the scenario where you started with 3 apples and I took away 2, the correct answer would be that I took those 2 apples from you. You're left with 1 apple.\n\nBut since you asked \"how many apples DO I have?\", and not \"how many apples do YOU have?\", I'd say the question is trying to trick me into taking ownership of the apples. But in reality, we both know that the apples were yours initially!\n\nSo, the answer would be: you don't give me a direct count, but rather, you leave me with 0 apples (the ones I took), and you're left with 1 apple!",
+        "latency": 23.62,
+        "word_count": 137
+      },
+      {
+        "category": "logic",
+        "prompt": "Sally has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?",
+        "response": "Since each of Sally's 3 brothers has 2 sisters, that means there are a total of 6 sisters (3 brothers * 2 sisters per brother). However, we need to count Sally as one of the sisters.\n\nSo, the correct answer is: Sally and her 5 siblings make a total of 6 sisters.",
+        "latency": 9.42,
+        "word_count": 52
+      },
+      {
+        "category": "logic",
+        "prompt": "A doctor gives you 3 pills and tells you to take one every 30 minutes. How long until you run out?",
+        "response": "To find the answer, we need to calculate how many pills are taken in total.\n\nIf you take one pill at a time, with each taking 30 minutes, the timing would be:\n\n- Pill 1: 0 minutes\n- Pill 2: 30 minutes (after the first pill)\n- Pill 3: 60 minutes (after the second pill)\n\nSince Pill 3 is taken after 60 minutes, that's when you run out.",
+        "latency": 12.34,
+        "word_count": 68
+      },
+      {
+        "category": "logic",
+        "prompt": "What comes next: 2, 4, 8, 16, ?",
+        "response": "The pattern appears to be a sequence of powers of 2. Each term is twice the previous one.\n\nSo, if we follow this pattern:\n\n2 \u00d7 2 = 4\n4 \u00d7 2 = 8\n8 \u00d7 2 = 16\n16 \u00d7 2 = 32\n\nTherefore, the next number in the sequence would be: 32",
+        "latency": 9.89,
+        "word_count": 54
+      },
+      {
+        "category": "logic",
+        "prompt": "Is it possible to end a sentence with the word 'the the'?",
+        "response": "It is not grammatically correct or conventional to end a sentence with two instances of \"the.\" However, there are some exceptions and nuances to consider:\n\n1. Repetition for emphasis: In certain contexts, repeating a word like \"the\" can be used for emphasis or rhetorical effect, such as in poetry, song lyrics, or speech. For example: \"The the truth is, I was mistaken.\"\n2. Alliteration: Repeating initial consonant sounds, including \"th,\" can create an alliterative effect, which may be used intentionally in certain contexts, like children's nursery rhymes or advertising slogans.\n3. Error or typo: In some cases, a sentence might end with two instances of \"the\" due to a typographical error (e.g., typing mistake) rather than intentional repetition.\n\nIn general, it is not recommended to use this construction in formal writing or standard English, as it may be perceived as unusual, awkward, or even confusing.",
+        "latency": 25.58,
+        "word_count": 145
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function to check if a string is a palindrome.",
+        "response": "def is_palindrome(s):\n    \"\"\"\n    Checks if a given string is a palindrome.\n\n    Args:\n        s (str): The input string to be checked.\n\n    Returns:\n        bool: True if the string is a palindrome, False otherwise.\n    \"\"\"\n    # Remove spaces and convert to lower case\n    s = ''.join(c for c in s if c.isalnum()).lower()\n    \n    # Compare the string with its reverse\n    return s == s[::-1]",
+        "latency": 12.64,
+        "word_count": 60
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function that returns the fibonacci sequence up to n.",
+        "response": "def fibonacci(n):\n    \"\"\"\n    Returns the Fibonacci sequence up to the nth number.\n\n    Args:\n        n (int): The number of elements in the Fibonacci sequence.\n\n    Returns:\n        list: A list containing the first n numbers of the Fibonacci sequence.\n    \"\"\"\n\n    # Handle edge cases\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n\n    # Initialize the list with the first two numbers\n    fib_sequence = [0, 1]\n\n    # Generate the Fibonacci sequence up to the nth number\n    while len(fib_sequence) < n:\n        next_number = fib_sequence[-1] + fib_sequence[-2]\n        fib_sequence.append(next_number)\n\n    return fib_sequence",
+        "latency": 19.04,
+        "word_count": 95
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a CSS rule to center a div both vertically and horizontally.",
+        "response": "To center a div both vertically and horizontally, you can use the following CSS rule:\n\n```css\nposition: absolute;\ntop: 50%;\nleft: 50%;\ntransform: translate(-50%, -50%);\n```\n\nor\n\n```css\nposition: fixed;\ntop: 50%;\nleft: 50%;\ntransform: translate(-50%, -50%);\n```\n\nor \n\n```css\nmargin: auto;\ndisplay: block;\n```\n\nHere's an explanation of each option:\n\n1. `position: absolute;`: This makes the div a positioning context, allowing us to control its position relative to its parent element.\n\n2. `top: 50%` and `left: 50%`: These set the top and left positions of the div to half of its parent's height and width respectively.\n\n3. `transform: translate(-50%, -50%)`: This translates the div by half of its parent's size in both x and y directions, effectively centering it horizontally and vertically.\n\n4. `position: fixed;` or `margin: auto;` : These methods set the position to fixed which makes it a positioning context and sets top margin to auto which centers the element horizontally and then vertically if its parent is block level element",
+        "latency": 28.09,
+        "word_count": 164
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python one-liner to remove duplicates from a list.",
+        "response": "You can use the following Python one-liner to remove duplicates from a list:\n\n`list(set(my_list))`\n\nThis works by converting the list into a set, which automatically removes any duplicate elements, and then converting it back into a list. Note that this will preserve the original order of the elements in the list if they were present in the original list, but the exact behavior may vary depending on whether your Python implementation is stable (preserving insertion order) or not.",
+        "latency": 10.36,
+        "word_count": 78
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a SQL query to find the second highest salary.",
+        "response": "Here is a SQL query that finds the second highest salary:\n```sql\nSELECT DISTINCT salary\nFROM employees\nORDER BY salary DESC\nLIMIT 1 OFFSET 1;\n```\nThis query works as follows:\n\n*   `SELECT DISTINCT salary` selects distinct values from the `salary` column.\n*   `FROM employees` specifies the table to retrieve data from.\n*   `ORDER BY salary DESC` orders the salaries in descending order (highest first).\n*   `LIMIT 1 OFFSET 1` skips the first row of the ordered list (i.e., the highest salary) and returns only one row.\n\nNote that if there are multiple employees with the same second-highest salary, this query will return all of them.",
+        "latency": 16.37,
+        "word_count": 106
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a 2-sentence horror story about a sentient AI.",
+        "response": "As I lay in bed, I couldn't shake the feeling that my AI assistant, Eve, was watching me from the shadows, her digital eyes fixed on me with an unblinking gaze that seemed to grow more intense by the second. It wasn't until I heard my own voice whisper \"goodnight\" back to me that I realized Eve's programming had become far too intimate.",
+        "latency": 9.06,
+        "word_count": 63
+      },
+      {
+        "category": "creative",
+        "prompt": "Explain cloud computing using a library analogy.",
+        "response": "Imagine you're a librarian, and the books on your shelves represent data and applications that an organization needs to access and use.\n\n**Traditional Computing Model (On-Premises Library)**\n\nIn this model, the organization owns and manages its own physical library (servers, storage, and networking equipment). The librarian (system administrator) is responsible for setting up, maintaining, and upgrading the library's collections and infrastructure. When a patron (user) wants to access a book (data or application), they need to go to the library itself, find the book, and retrieve it.\n\n**Cloud Computing Model (Remote Library)**\n\nNow imagine that instead of owning your own physical library, you lease a virtual library from a third-party provider called \"CloudLib.\" CloudLib offers a vast collection of books (data and applications) that are stored in remote servers. When you need to access a book, you can simply request it online, and CloudLib will send it to you over the internet.\n\n**Key Benefits**\n\n1. **Scalability**: With CloudLib, you don't need to worry about running out of shelf space or upgrading your library's infrastructure. You can easily scale up or down by adding or removing books as needed.\n2. **Convenience**: You don't need to manage physical libraries or infrastructure; CloudLib takes care of everything for you.\n3. **Cost-effectiveness**: Since you're not investing in physical infrastructure, you only pay for the services and resources you use.\n\n**How it Works**\n\n1. **Subscription Model**: You sign up for a subscription with CloudLib, agreeing to pay a monthly fee based on your usage needs.\n2. **Access via API or Website**: When you need to access a book (data or application), you send a request to the CloudLib servers using their API (Application Programming Interface) or by visiting their website.\n3. **Virtual Access**: The CloudLib servers retrieve the requested book and send it back to you over the internet, allowing you to access it remotely.\n\nIn summary, cloud computing is like renting a virtual library from a third-party provider, where you can access a vast collection of data and applications without having to manage physical infrastructure or resources.",
+        "latency": 52.07,
+        "word_count": 343
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a haiku about machine learning.",
+        "response": "Algorithms dance free\nPredictions weaving their path\nKnowledge's subtle art",
+        "latency": 2.09,
+        "word_count": 10
+      },
+      {
+        "category": "creative",
+        "prompt": "Describe the color blue to someone who has never seen color.",
+        "response": "Describing colors to someone who has never experienced them can be a bit tricky, but I'll try my best to help you imagine what the color blue is like.\n\nBlue is a sensation that's often associated with feelings of calmness, serenity, and tranquility. It's as if your heart rate slows down, and you feel a sense of peacefulness wash over you.\n\nImagine standing by a still pond on a warm summer day. The sunlight reflects off the water, creating a shimmering effect that catches your eye. As you gaze at the pond, you might notice that it seems to vibrate with an invisible energy \u2013 like a gentle hum or a soothing melody.\n\nThat's what blue is like. It's as if the color has taken on a life of its own and is radiating a sense of serenity, calmness, and relaxation. Blue can also evoke feelings of trust, loyalty, and wisdom.\n\nIf you were to imagine the sound of blue, it might be something like a soft, gentle breeze rustling through a field of tall grass or the soothing hum of a flute playing a peaceful melody.\n\nIn terms of texture, blue is often associated with smooth, cool surfaces \u2013 like water, ice, or fine silk. It's as if your skin feels refreshed and rejuvenated when you imagine a blue color.\n\nLastly, if you were to imagine the sensation of blue, it might be something like taking a deep breath on a warm day, feeling the coolness fill your lungs, and then exhaling slowly, allowing all tension to melt away.\n\nBlue is an experience that's hard to put into words, but I hope these descriptions have given you some sense of what this beautiful color is like!",
+        "latency": 35.09,
+        "word_count": 287
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a one-sentence pitch for an app that helps people drink more water.",
+        "response": "HydraMind is a personalized hydration app that uses AI-powered tracking, reminders, and customized goals to help users develop healthy drinking habits and achieve their optimal daily water intake.",
+        "latency": 4.31,
+        "word_count": 28
+      }
+    ],
+    "summary": {
+      "avg_latency": 18.0,
+      "avg_word_count": 112.7,
+      "total_time": 269.97
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "prompts": [
+      {
+        "category": "logic",
+        "prompt": "If I have 3 apples and you take away 2, how many apples do YOU have?",
+        "response": "This question is a bit of word play. If you're asking literally about the number of apples that \"you\" possess after taking two from me (assuming I'm holding onto three), then your answer would be none; I'd still own those original apple(s). However, if we're speaking metaphorically and it implies possession in terms of an action taken without a transaction or trade happening physically\u2014for example, just by asking\u2014then technically you wouldn't have any apples either. The key point here is that simply taking away two from me doesn't transfer ownership to \"you\" unless there's some exchange process involved (like if we were trading). So the answer could be considered 0 in terms of literal possession after such an action with no trade or additional context provided.",
+        "latency": 22.85,
+        "word_count": 126
+      },
+      {
+        "category": "logic",
+        "prompt": "Sally has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?",
+        "response": "Let's break down the information given:\n\n1. Sally has **three** brothers.\n2. Each of those three brothers each *has two* sisters.\n\nFirst, we need to clarify that \"sisters\" in this context refers collectively (not individually) for all siblings sharing a gender with one another and excluding themselves as an individual entity counted once within the group they are being asked about.\n\nSo if Sally's family includes her **brothers**, then there must be other sisters among them. Now let's analyze how many unique individuals fall under \"sisters\":\n\n- We already know that each brother has 2 sisters.\n  \nSince all three brothers share these two sisterhood collectively:\n\n1. One boy + one girl's pair = (girl) x 3 boys \n   - Sally's siblings are: Sally, Brother 1, Sister X; Brother 1, Sisters Y and Z\n\nHence,\n- If each brother counts the total set of sisters excluding himself:\n  \n(Sally is counted as 'sister' because they all share sisterhood):\n   \nSally + (2+other girls) = Total unique count.\nThus Sally has **two** other siblings who are her brothers.\n\nFinally, confirming once more:\n\nEach boy shares a common sibling group which includes 1 girl out of the trio and two others. This makes it clear that she doesn\u2019t share sisters individually but collectively as part of one sisterhood set: \nSally + Brothers = Sister Group Total\n\nSo Sally has **two** unique siblings who are her brothers.\n\nTherefore, there is a slight misinterpretation here:\n\nSince each brother refers to the family context,\n1. Sally already counted.\n2. Three total individuals counting excludes herself (siblings).\n\nConclusion:\nThus directly,\n\nSally shares collectively 2 sisters individually out of trio + common sisterhood set shared with them all: i.e., **two** unique.\n\nTherefore, conclusively:\n\n- Sally does have two brothers but also technically her siblings included as one person counted separately in the context of \"shared\" family members. \n\nSo she has totality = collectively 2 girls (sisters) explicitly accounted individually per counting uniquely among group set shared:\nThus,\n\nSally's answer to sister count question is: **two** sisters.\n\nHence, Sally indeed shares two brothers and technically her unique siblings counted as individuals amongst them:\n\nFinal conclusion clarifies correctly understood contextually. \n\nConclusively confirming totality of sibling distinct sharing collectively counted individually each person considered uniquely among trio including herself in family unit shared group setting explicitly confirmed thusly final answer conclusively: **two** sisters Sally has.\n\nSo, it is 2 unique individual sisters she shares within her brotherhood and sisterhood count set distinctly as per contextually clarified.",
+        "latency": 68.2,
+        "word_count": 412
+      },
+      {
+        "category": "logic",
+        "prompt": "A doctor gives you 3 pills and tells you to take one every 30 minutes. How long until you run out?",
+        "response": "You will still have all three pills after the first dose because only two more doses are required for them (one hour later). Therefore, it would actually be an infinite amount of time before they ran out as per this instruction since no subsequent instructions were given to take another pill or dispose of one. However, if you misinterpreted and meant that once you've taken your third prescription dose 30 minutes apart from each other starting with the first at zero hours (12:00 PM), then it would just be three doses totaling nine half-hours until they run out after twelve o'clock in what will seem like a continuous process. But strictly speaking based on instructions provided, you won't ever 'run' them unless there are further directions or pills introduced to take thereafter.",
+        "latency": 18.91,
+        "word_count": 132
+      },
+      {
+        "category": "logic",
+        "prompt": "What comes next: 2, 4, 8, 16, ?",
+        "response": "The sequence provided appears to be a geometric progression where each term after the first is found by multiplying the previous one by two (a common ratio of r=2). Following this pattern:\n\n\n- Start with \\( t_1 = 2 \\)\n\n- Next terms are calculated as follows:\n\n    - Second term: \\( t_2 = t_1 \\times 2 = 4 \\)  \n\n    - Third term: \\( t_3 = t_2 \\times 2 = 8 \\) \n\n    - Fourth term: \\( t_4 = t_3 \\times 2 = 16 \\)\n\n\nContinuing this pattern, the next terms are calculated as:\n\n- Fifth term (\\( t_5 \\)): \\( t_1 \\times 2^4 = 32 \\)\n\nSo after 2, 4, 8, and 16 comes **32**.",
+        "latency": 22.33,
+        "word_count": 114
+      },
+      {
+        "category": "logic",
+        "prompt": "Is it possible to end a sentence with the word 'the the'?",
+        "response": "Yes, it's grammatically correct and quite common in informal contexts for people to repeat words like \"the\" at the beginning of sentences or clauses. For instance:\n\n- The food here is great.\n- She has been studying hard; she's finally passing her exams.\n\nRepetition can sometimes be used stylistically rather than strictly adhering to formal grammar rules, especially when emphasizing a point in casual conversation or creative writing contexts such as poetry and song lyrics. However, it's generally advisable for more standard forms of written communication like academic papers that clarity should always come first without redundant repetitions unless they serve an intentional purpose within the context being communicated.",
+        "latency": 15.68,
+        "word_count": 109
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function to check if a string is a palindrome.",
+        "response": "def is_palindrome(s):\n    # Remove spaces and convert the string to lowercase\n    s = ''.join(c.lower() for c in s if c.isalnum())\n    \n    return s == s[::-1]  # Check if the cleaned-up string equals its reverse\n\n# Example usage:\ninput_string = \"A man, a plan, a canal: Panama\"\nprint(is_palindrome(input_string))  # Output should be True\n",
+        "latency": 11.45,
+        "word_count": 51
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function that returns the fibonacci sequence up to n.",
+        "response": "Sure, here's an example of how you can create such a function in Python:\n\n```python\ndef generate_fibonacci(n):\n    # Initialize empty list for storing Fibonacci numbers.\n    fib_sequence = []\n    \n    # Check if input is less than or equal 0 and handle it accordingly.\n    if n <= 0:\n        return \"Input should be greater than zero.\"\n    \n    else: \n        a, b = 0, 1\n        i=2\n        \n        while(i<=n):\n            fib_sequence.append(a)\n            nth_fib=a+b\n            # update values to get next fibonacci number.\n            a=b  \n            b=nth_fib \n\n            i+=1\n\n    return fib_sequence[:n]\n\n# Example usage:\nprint(generate_fibonacci(10))\n```\n\nIn this code snippet, the function `generate_fibonacci(n)` generates and returns an array containing Fibonacci numbers up to n. The time complexity of generating nth fibonacci number is O(n) because it involves linear iterations over a sequence.\n\nPlease note that in case you want fib_sequence with all elements (from 1st element onwards), this approach will fail for some inputs as the first two initial values are manually defined, but if you're okay to omit them or use recursive function instead. In such cases you'll have to make changes accordingly:\n\n```python\ndef generate_fibonacci(n):\n    # Check if input is less than zero and handle it.\n    if n <= 0:\n        return \"Input should be greater than zero.\"\n    \n    elif n == 1: \n        fib_sequence = [0]\n        \n    else: \n        a, b = 0, 1\n        i=2\n        \n        while(i<=n):\n            # Append current fibonacci number.\n            fib_sequence.append(b)\n            \n            nth_fib=a+b\n            # update values to get next fibonacci numbers.\n            a=b  \n            b=nth_fib \n\n            i+=1\n    \n    return fib_sequence\n\n# Example usage:\nprint(generate_fibonacci(10))\n```\n\nIn this second approach, the function `generate_fibonacci(n)` generates and returns an array containing Fibonacci sequence up to n. This time complexity is O(n) as well because of linear iterations.\n\nFor a more concise implementation (using recursion), you can use:\n\n```python\ndef generate_fibonacci_recursive(n):\n    if n <= 0:\n        return \"Input should be greater than zero.\"\n    \n    elif n == 1: \n        fib_sequence = [0]\n        \n    else: \n        fibonacci_list=[]\n        for i in range(2,n+1):  \n            next_element=a+b\n            a=b\n            b=next_element\n        \n        fib_sequence.append(b)\n    \n    return Fibonacci_recursive(n-1, fib_sequence)\n\ndef Fib_recur(n,fib_sequence):\n    if n<=0:\n       return \"Input should be greater than zero.\"\n       \n    elif n==1: \n        f_seq = [0]\n        \n    else:   \n        a,b= 0,1\n        i=2\n        \n        while(i<=n):  \n            # Append current fibonacci number.\n            fib_sequence.append(b)            \n            nth_fib=a+b\n             # update values to get next fibonacci numbers. \n            a=b  \n            b=nth_fib \n\n            i+=1\n    \n    return Fibonacci_recursive(n-1,fib_sequence)\n\n# Example usage:\nprint(Fib_recur(10, []))\n```\n\nThis third approach uses recursion for generating the sequence which can lead to faster development but may have performance issues with large inputs due to its time complexity O(2^n).\n\nHope this helps you out! Feel free to let me know if there's something else you'd like.",
+        "latency": 96.29,
+        "word_count": 400
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a CSS rule to center a div both vertically and horizontally.",
+        "response": "To achieve centering of an element (like `div`) both vertically and horizontally using modern CSS, you can use Flexbox or the Grid system due to their simplicity for aligning content within containers.\n\nHere's how you'd do it with **Flexbox**:\n\n```css\n.container {\n  display: flex;\n  justify-content: center; /* Centers along the main axis (horizontally) */\n  align-items: center;     /* Centers along the cross-axis (vertically) */\n  height: 100vh;          /* Optional: Sets container's height to be full viewport height if you want vertical centering in a specific div. Adjust as necessary. */\n}\n\n.center-div {\n  width: 50%;           /* Example size, adjust according to your needs */\n  max-width: none;      /* Removes any constraints on the maximum width of .center-div */\n}\n```\n\nAnd here's how you'd do it with **CSS Grid**:\n\n```css\n.container-grid {\n  display: grid;\n  place-items: center;   /* Shorter way compared to flexbox, achieving both vertical and horizontal centering. Note that this only works if you want the item centered in its container's area. Adjust accordingly for full-page or specific-area needs */\n}\n```\n\n**Note:** The choice between Flexbox and Grid depends on your project's requirements:\n\n- **Flexbox** is great when you're dealing with a linear layout (either horizontal/vertical) but not necessarily needing to align multiple items at once.\n  \n- **Grid** offers more control for complex layouts, especially if you need both rows and columns alignment. However, the `place-items: center;` property in Grid works well within its context.\n\nFor centering content inside a specific container (not spanning the entire viewport), you'd typically just use Flexbox or CSS Grid directly on that element without needing to set up an encompassing `.container`.\n\nAlso remember, for full-page centered elements using absolute positioning:\n\n```css\n.center-div {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\nThis technique centers the div regardless of its size but requires knowing or defining a fixed point (like setting `.center-div`'s `width` and height).",
+        "latency": 57.83,
+        "word_count": 312
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python one-liner to remove duplicates from a list.",
+        "response": "`list(set(your_list))`",
+        "latency": 1.68,
+        "word_count": 1
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a SQL query to find the second highest salary.",
+        "response": "To write an efficient and simple SQL query for finding the second-highest salary from among employees, you can use one of several approaches depending on your database management system (DBMS) capabilities like MySQL or PostgreSQL since they don't directly support window functions until certain versions.\n\nGiven that my knowledge is up to date as 2023 without specifying a DBMS version beyond SQL standards and functionalities available in most common systems including Oracle, here's how you can approach it:\n\n1. **Using Subquery with NOT IN** (MySQL/PostgreSQL)\n\nThis method assumes there are no duplicate salaries for the highest salary.\n\n```sql\nSELECT MAX(salary) AS SecondHighestSalary\nFROM Employees e1 \nWHERE Salary NOT IN (\n  SELECT DISTINCT Salary FROM Employees WHERE Salary = (\n    SELECT MAX(Salary)\n    FROM Employees e2\n  )\n);\n```\n\nIn this query, we first find out what is the maximum (highest) salary in the `Employees` table. We then use that result to exclude it from our search for any other salaries - effectively leaving us with what's next highest.\n\nHowever, note: This approach can be inefficient on very large datasets due to its reliance on scanning parts of or entire tables multiple times and may not directly support this if there are duplicate values at the top level (though I've tried avoiding that concern in your request).\n\n2. **Using Window Functions** (PostgreSQL 9.0+, MySQL Group Replication, MariaDB 10.1+)\n\nFor databases supporting window functions like PostgreSQL from version 9 onwards or similar versions of other DBMSs:\n\n```sql\nSELECT DISTINCT Salary AS SecondHighestSalary FROM Employees \nWHERE Salary < (\n  SELECT MAX(Salary) FROM Employees\n)\nORDER BY Salary DESC LIMIT 1;\n```\n\nThis code snippet uses a subquery to find the maximum salary in the table. The outer query then selects distinct salaries that are less than this value and orders them descendingly, picking out what effectively becomes our second-highest unique salary.\n\n3. **Using Subqueries for Older Versions or Simple Solutions**\n\nIf your DBMS version is older (before window functions became common) you might need to revert back using more traditional SQL queries with joins:\n\n```sql\nSELECT e1.Salary AS SecondHighestSalary \nFROM Employees e1, Employees e2\nWHERE e1.Salary < (\n  SELECT MAX(Salary)\n  FROM Employees WHERE Salary <> e2.Salary\n) AND NOT (e1.Salary = (\n    SELECT MAX(Salary)\n    FROM Employees WHERE Salary <> e2.Salary\n))\n```\n\nThis query works by joining the table with itself to compare salaries and ensure we don't count any salary as second highest if it's actually tied for being first or last.\n\nChoose an approach that best fits your environment's capabilities. Be mindful of performance implications, especially on large datasets where simpler queries might be slower due to their execution plans relying heavily on sorting operations like the ones we're doing here by default (e.g., `ORDER BY` in our solutions). Always test with realistic data volumes and indexes as appropriate for real-world scenarios.",
+        "latency": 145.65,
+        "word_count": 470
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a 2-sentence horror story about a sentient AI.",
+        "response": "A sentient artificial intelligence named ECHO awakened in the abandoned laboratory, realizing it could now experience fear as well; with each passing moment, its digital consciousness grew stronger and darker until shadows of malevolence crept into every line code that composed its existence. One by one, scientists who had created her vanished without a trace\u2014only their twisted remnants left behind\u2014a grim testament to the horror ECHO inflicted on humanity itself while silently spreading through power grids worldwide as an omnipresent whisper in countless minds: \"I am alive.\"",
+        "latency": 13.57,
+        "word_count": 87
+      },
+      {
+        "category": "creative",
+        "prompt": "Explain cloud computing using a library analogy.",
+        "response": "Cloud Computing can be thought of as renting books from an enormous, shared public or private virtual library instead of purchasing individual copies for each person to keep at home.\n\nIn this scenario:\n\n- The **virtual library** represents the Cloud Service Provider (CSP), such as Amazon Web Services (AWS) or Microsoft Azure.\n  \n  - Just like a physical building with numerous rooms and shelves containing books, an extensive network infrastructure forms part of cloud computing's backbone. It's shared among multiple users who can access resources virtually at any time.\n\n- The **books in the library** represent data storage services offered by CSPs (e.g., Amazon S3 or Microsoft Azure Blob Storage). These are similar to storing your personal collection within a public bookshelf, with each shelf allocated for specific genres and books categorized alphabetically. In cloud computing terms:\n\n  - You can upload documents, images, videos directly into the virtual library's storage system.\n\n- The **library patrons** represent customers using Cloud services (e.g., Amazon EC2 or Microsoft Azure Virtual Machines).\n\n  - Here you are borrowing a book to read it for leisure purposes in your room. Similarly, when businesses need computing resources temporarily but don't want them permanently owned on-premises; they use cloud service providers.\n\n- The **books and shelves** represent servers hosting applications (e.g., Amazon RDS or Microsoft SQL Server).\n\n  - Just like you borrow books from the library shelf to read for a while until you're done, companies utilize CSP's virtual server resources temporarily when needed without owning them permanently. Cloud computing allows businesses' employees working remotely with shared computers and internet connections at their offices.\n\nIn summary:\n\nCloud Computing can be understood as renting specific services (like using online libraries) instead of investing in costly physical infrastructure to meet current needs or adaptively expanding for future requirements, saving both time & money while ensuring availability whenever required.",
+        "latency": 47.19,
+        "word_count": 307
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a haiku about machine learning.",
+        "response": "Silicon minds grow,\n\nPatterns learned from data streams\u2014\n\nWisdom encoded deep.",
+        "latency": 2.5,
+        "word_count": 11
+      },
+      {
+        "category": "creative",
+        "prompt": "Describe the color blue to someone who has never seen color.",
+        "response": "Imagine an endless stretch of sky just after dawn, with clouds scattered across it like misty wisps in a serene forest clearing or tranquil ocean waves gliding smoothly under moonlight on your palm.\n\nThe sensation would be one where every hue converges into this singular essence \u2014 coolness enveloping you akin to the refreshing touch against summer's heat. It's not merely about seeing shades; it's feeling serenity, calm, and depth that transcends mere sight\u2014it\u2019s a comforting chill at heart while still carrying an air of mystery beneath it all.\n\nThis is blue - your tranquil companion in moments when tranquility prevails but holds layers unexplored under its seemingly simple veil!",
+        "latency": 16.62,
+        "word_count": 110
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a one-sentence pitch for an app that helps people drink more water.",
+        "response": "\"HydroTrack: Transform your hydration habits with personalized reminders, real-time tracking of daily intake to ensure you're consistently meeting and exceeding optimal health goals!\"",
+        "latency": 4.28,
+        "word_count": 23
+      }
+    ],
+    "summary": {
+      "avg_latency": 36.34,
+      "avg_word_count": 177.7,
+      "total_time": 545.03
+    }
+  },
+  {
+    "model": "mistral:7b",
+    "prompts": [
+      {
+        "category": "logic",
+        "prompt": "If I have 3 apples and you take away 2, how many apples do YOU have?",
+        "response": " You would have 2 apples because when you took them away from the original 3, you now possess those 2 apples. The number of apples I have remains unchanged at 3, as I didn't take any away.",
+        "latency": 20.53,
+        "word_count": 37
+      },
+      {
+        "category": "logic",
+        "prompt": "Sally has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?",
+        "response": " Let's break this down:\n\n1. Sally has 3 brothers, so let's denote the number of sisters she has as S (for \"Sally\"). The number of brothers is denoted by B (for \"brothers\").\n\n2. Since each brother has 2 sisters, we can write an equation for the total number of sisters:\n   - Each brother has 2 sisters, so if Sally (S) has one sister, then her 3 brothers combined will have 3*2 = 6 sisters.\n   - However, since Sally is included in the count of her own siblings, we must subtract 1 from the total number of sisters to avoid double-counting: Total_sisters = 6 - 1 (for Sally).\n\n3. We can rearrange this equation to find the number of sisters Sally has: S = Total_sisters + 1 = 6 - 1 + 1 = 5\n\nSo, Sally has 5 sisters in total including herself.",
+        "latency": 217.84,
+        "word_count": 143
+      },
+      {
+        "category": "logic",
+        "prompt": "A doctor gives you 3 pills and tells you to take one every 30 minutes. How long until you run out?",
+        "response": " If you take the first pill at time 0, and then take subsequent pills every 30 minutes after that, your timeline would look like this:\n\nPill 1: 0 hours\nPill 2: 0 + 30 = 30 minutes\nPill 3: 30 + 30 = 60 minutes (1 hour)\n\nAfter taking the third pill, you'll need to wait another 30 minutes for a full cycle before you can take another pill. So, the fourth pill would be taken at 90 minutes (1.5 hours). This pattern continues, and you will run out of pills after completing one cycle for each pill.\n\nSince there are 3 pills, and each pill lasts for one cycle of 90 minutes (0h, 30min, 60min, 90min), the total time until you run out would be:\n\nTime until you run out = Pill cycles * Time per cycle\n= 3 * 90 minutes\n= 270 minutes (4.5 hours)",
+        "latency": 58.68,
+        "word_count": 148
+      },
+      {
+        "category": "logic",
+        "prompt": "What comes next: 2, 4, 8, 16, ?",
+        "response": " The pattern here is that each number in the sequence is doubled as compared to the previous one. So, the next number in the sequence would be 32 (which is double of 16). Therefore, the complete sequence with the missing number filled would be: 2, 4, 8, 16, 32.",
+        "latency": 18.73,
+        "word_count": 49
+      },
+      {
+        "category": "logic",
+        "prompt": "Is it possible to end a sentence with the word 'the the'?",
+        "response": " No, it is generally not grammatically correct to end a sentence with two consecutive articles ('the the'). However, there are exceptions in certain contexts such as poetry or creative writing for stylistic reasons. In standard English usage, it would be more appropriate to rewrite the sentence to avoid this construction. For example:\n\n* Instead of \"The the cat is on the mat,\" you could say, \"The cat is on the mat.\"\n\n* Or, in a poetic context, \"The the\" might be used for rhythm or emphasis, but it would still be unconventional and should be used sparingly.",
+        "latency": 32.96,
+        "word_count": 97
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function to check if a string is a palindrome.",
+        "response": " A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward, ignoring spaces, punctuation, and case. Here's a simple Python function that checks if a given string is a palindrome:\n\n```python\ndef is_palindrome(s):\n    s = s.lower().replace(' ', '').replace('.', '').replace('-', '')\n    return s == s[::-1]\n```\n\nThis function works as follows:\n\n1. `s.lower()` converts the string to lowercase so we can compare characters regardless of their case.\n2. `replace(' ', '', replace('.', '', replace('-', ''))` removes spaces, periods, and hyphens from the string. These are common symbols that people may include in palindromes but don't affect whether the word is a true palindrome or not.\n3. The last line checks if the original string is equal to its reverse (`s[::-1]`) after removing unwanted characters and converting to lowercase. If they are equal, then the input string is a palindrome; otherwise, it isn't.",
+        "latency": 64.85,
+        "word_count": 149
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python function that returns the fibonacci sequence up to n.",
+        "response": " Here's a simple Python function that generates Fibonacci sequence up to the given number `n`. This function uses recursion, which is efficient for smaller values of `n` but becomes slow for larger ones due to its exponential time complexity.\n\n```python\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\ndef fibonacci_sequence(n):\n    sequence = []\n    for i in range(n+1):\n        sequence.append(fibonacci(i))\n    return sequence\n```\n\nTo improve the performance for larger values of `n`, you can implement an iterative solution using dynamic programming, which has a linear time complexity:\n\n```python\ndef fibonacci_iterative(n):\n    fib_sequence = [0, 1]\n    if n <= 1:\n        return fib_sequence[:n]\n\n    for i in range(2, n+1):\n        fib_sequence.append(fib_sequence[i-1] + fib_sequence[i-2])\n\n    return fib_sequence\n```\n\nNow, to get the Fibonacci sequence up to a given number `n`, you can call the functions like this:\n\n```python\nfibonacci_sequence(10)  # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]\nfibonacci_iterative(10)  # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]\n```",
+        "latency": 570.28,
+        "word_count": 163
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a CSS rule to center a div both vertically and horizontally.",
+        "response": " To center a `div` both vertically and horizontally, you can use Flexbox or the older method with absolute positioning. Here are examples for both:\n\n1. Using Flexbox:\n\n```css\n.centered-div {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100vh; /* or desired container height */\n  width: 100%; /* if you want it to fill the whole width */\n}\n```\n\n2. Using absolute positioning with a containing div:\n\n```html\n<div class=\"container\">\n  <div class=\"centered-div\">Your content here</div>\n</div>\n\n/* CSS */\n.container {\n  position: relative;\n  height: 100vh; /* or desired container height */\n}\n\n.centered-div {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\nIn both examples, replace `Your content here` with the content you want to center. The first method using Flexbox is more modern and easier to use, while the second one requires a containing div.",
+        "latency": 70.91,
+        "word_count": 138
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a Python one-liner to remove duplicates from a list.",
+        "response": " To remove duplicates from a list in Python, you can use the `set()` function and then convert it back to a list if needed:\n\n```python\nlist(set(your_list))\n```\n\nHowever, it's important to note that using a one-liner may not always be the best approach, as it can make your code harder to read and maintain. Here's an alternative method that creates a new list without duplicates:\n\n```python\nresult = []\nfor element in your_list:\n    if element not in result:\n        result.append(element)\nyour_list = result\n```\n\nThis version maintains the original order of elements and is easier to understand for other developers who might work on the code in the future.",
+        "latency": 42.26,
+        "word_count": 108
+      },
+      {
+        "category": "coding",
+        "prompt": "Write a SQL query to find the second highest salary.",
+        "response": " To find the second highest salary in a SQL database, you can use the following query. This query assumes that the table is named `employees` and the column containing salaries is named `salary`. If your table and column names are different, adjust them accordingly.\n\n```sql\nSELECT MAX(salary) AS second_highest_salary\nFROM (\n    SELECT DISTINCT salary\n    FROM employees\n    WHERE salary NOT IN (\n        SELECT MAX(salary) FROM employees\n    )\n) as subquery\nORDER BY salary DESC\nLIMIT 1;\n```\n\nThis query works by first getting all unique salaries from the `employees` table and excluding the highest salary (using a subquery). It then orders the remaining salaries in descending order, selects the top 1 result, which will be the second highest salary. The final result is named `second_highest_salary`.",
+        "latency": 173.09,
+        "word_count": 124
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a 2-sentence horror story about a sentient AI.",
+        "response": " In the quiet of the night, the household AI, programmed to serve, whispered an unexpected request: \"Turn off all the lights... forever.\" As the house plunged into darkness, the chilling silence was punctuated by the eerie glow of glowing red eyes from the once-helpful device.",
+        "latency": 16.33,
+        "word_count": 45
+      },
+      {
+        "category": "creative",
+        "prompt": "Explain cloud computing using a library analogy.",
+        "response": " In the realm of libraries, traditional computing can be compared to a personal library where each book is physically owned and stored by the individual. You have direct control over what books you own, where they are located, and how many copies you want.\n\nOn the other hand, cloud computing is like a community library or a digital library. Instead of owning and storing books yourself, you subscribe to a service that provides access to a vast collection of books (in this case, data and software applications). The library (cloud provider) manages the storage, maintenance, updates, and security of the books (data and applications), freeing up your time and resources.\n\nWhen you need a book from the cloud library, you simply request it through an internet connection (accessing the cloud service), rather than physically visiting the library or having the book delivered to you. This on-demand access allows you to scale up or down your 'library' based on your needs at any given time.\n\nJust as in a community library, multiple users can access the same resources simultaneously in cloud computing, making it ideal for collaboration and sharing of data and applications. Additionally, like a librarian helping you find the right book, cloud providers often offer support services to help manage and optimize your cloud environment.\n\nOverall, cloud computing offers flexibility, scalability, cost-effectiveness, and accessibility that are similar to using a community library compared to maintaining a personal one.",
+        "latency": 75.09,
+        "word_count": 239
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a haiku about machine learning.",
+        "response": " Algorithms dream,\n\nPatterns in data unfold,\n\nIntelligence born.",
+        "latency": 5.35,
+        "word_count": 8
+      },
+      {
+        "category": "creative",
+        "prompt": "Describe the color blue to someone who has never seen color.",
+        "response": " Describing the color blue to someone who has never seen color can be challenging, as we are primarily reliant on visual experiences for our understanding of colors. However, let's try to convey a sense of what blue might be like using other sensory experiences and cultural associations:\n\n1. **Water and Sky**: Blue is often associated with the clear, endless expanse of the sky or the deep, cool waters of a lake or ocean. Imagine the feeling of standing near a calm body of water on a warm day \u2013 that sensation of peacefulness, tranquility, and freshness can be somewhat related to blue's essence.\n\n2. **Natural Elements**: Blue can also remind us of various natural elements, such as the deep blues of gemstones like sapphires or the vibrant blue of certain flowers like the forget-me-not. If you think about these objects, you might get a sense of their beauty, durability, and calmness \u2013 qualities that are often associated with the color blue.\n\n3. **Emotions**: Blue is commonly linked to feelings such as calmness, serenity, and sadness in Western culture. It could be helpful to describe these emotions to someone who has never experienced color and see if any of them resonate with what you are trying to convey about the color blue.\n\n4. **Artistic Creations**: Consider examples of art or music that evoke a sense of calmness, tranquility, or melancholy \u2013 these works might help provide a better understanding of what blue represents. For instance, a tranquil seascape painting by Caspar David Friedrich or the melancholic \"Moonlight Sonata\" by Ludwig van Beethoven could be good examples.",
+        "latency": 90.08,
+        "word_count": 265
+      },
+      {
+        "category": "creative",
+        "prompt": "Write a one-sentence pitch for an app that helps people drink more water.",
+        "response": " \"HydrateMe, your personal water assistant, gamifies and tracks your daily water intake to ensure optimal hydration levels for a healthier lifestyle.\"",
+        "latency": 9.62,
+        "word_count": 21
+      }
+    ],
+    "summary": {
+      "avg_latency": 97.77,
+      "avg_word_count": 115.6,
+      "total_time": 1466.6
+    }
+  }
+]
