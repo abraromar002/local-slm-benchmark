@@ -1,4 +1,4 @@
-#  Local SLM Benchmark
+# Local SLM Benchmark
 
 A systematic benchmarking study comparing **local language models running entirely offline via Ollama**.
 The project evaluates inference speed, structured output reliability, and response behavior across standardized prompt categories.
